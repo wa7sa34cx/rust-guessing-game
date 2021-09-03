@@ -37,6 +37,7 @@ impl Game {
     }
 }
 
+/// All dialogues in the game
 pub struct Speech {}
 
 impl Speech {
@@ -52,26 +53,26 @@ impl Speech {
     }
 
     pub fn not_a_number() {
-        println!("This is not a number 😱 try again:\n");
+        println!("\nThis is not a number 😱 try again:\n");
     }
 
     pub fn invalid_range(game: &Game) {
         println!(
-            "Please type a number between {} and {}:\n",
+            "\nPlease type a number between {} and {}:\n",
             game.range.min, game.range.max
         );
     }
 
     pub fn less() {
-        println!("Too small ⬆️  try again:\n");
+        println!("\nToo small ⬆️  try again:\n");
     }
 
     pub fn greater() {
-        println!("Too big ⬇️  try again:\n");
+        println!("\nToo big ⬇️  try again:\n");
     }
 
     pub fn equal() {
-        println!("Congrats 🎉 you guessed it!\n");
+        println!("\nCongrats 🎉 you guessed it!\n");
     }
 }
 
@@ -139,13 +140,13 @@ impl Guess {
     /// let game = Game::new();
     ///
     /// let guess = Guess { number: Some(42) };
-    /// assert_eq!(guess.is_not_a_number(), false);
+    /// assert_eq!(guess.is_invalid_range(&game), false);
     /// 
     /// let guess = Guess { number: Some(123) };
-    /// assert_eq!(guess.is_not_a_number(&game), true);
+    /// assert_eq!(guess.is_invalid_range(&game), true);
     ///
     /// let guess = Guess { number: Some(0) };
-    /// assert_eq!(guess.is_not_a_number(&game), true);
+    /// assert_eq!(guess.is_invalid_range(&game), true);
     /// ```
     pub fn is_invalid_range(&self, game: &Game) -> bool {
         if self.number.unwrap() < game.range.min {
