@@ -18,7 +18,7 @@ impl Default for Range {
 
 // Game init
 #[derive(Debug)]
-pub struct Game {
+struct Game {
     range: Range,
     number: u32,
 }
