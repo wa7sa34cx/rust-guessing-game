@@ -1,6 +1,10 @@
 mod game;
+mod guess;
+mod speech;
 
-use game::{Game, Guess, Speech};
+use game::Game;
+use guess::Guess;
+use speech::Speech;
 use std::cmp::Ordering;
 
 /// Let's play the game!
