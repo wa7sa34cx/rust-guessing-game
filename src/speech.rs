@@ -1,18 +1,18 @@
 //! Dialogue module
 
-use crate::Game;
+use crate::Range;
 
 /// All dialogues in the game
 pub struct Speech {}
 
 impl Speech {
-    pub fn greeting(game: &Game) {
+    pub fn greeting(range: &Range) {
         println!("\n------------------------");
         println!("  The Guessing Game 🤔");
         println!("------------------------\n");
         println!(
             "Let's play the game. I thought of a number between {} and {}.",
-            game.range.min, game.range.max
+            range.min, range.max
         );
         println!("Try to guess it! Please type your number:\n");
     }
@@ -21,10 +21,10 @@ impl Speech {
         println!("\nThis is not a number 😱 try again:\n");
     }
 
-    pub fn invalid_range(game: &Game) {
+    pub fn invalid_range(range: &Range) {
         println!(
             "\nPlease type a number between {} and {}:\n",
-            game.range.min, game.range.max
+            range.min, range.max
         );
     }
 
