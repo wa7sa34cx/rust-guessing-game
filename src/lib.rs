@@ -102,6 +102,7 @@ impl Guess {
     /// # Examples
     ///
     /// ```
+    ///  # use rust_guessing_game::Guess;
     /// let guess = Guess { number: Some(42) };
     /// assert_eq!(guess.is_not_a_number(), false);
     ///
@@ -132,7 +133,7 @@ mod tests {
     use super::{Game, Guess};
 
     #[test]
-    fn test_guess_is_not_a_number() {
+    fn guess_is_not_a_number() {
         let mut guess = Guess::new();
 
         guess.number = None;
@@ -143,7 +144,7 @@ mod tests {
     }
 
     #[test]
-    fn test_guess_is_invalid_range() {
+    fn guess_is_invalid_range() {
         let game = Game::new();
         let mut guess = Guess::new();
 
@@ -154,7 +155,7 @@ mod tests {
         guess.number = Some(game.range.min - 1);
         assert_eq!(guess.is_invalid_range(&game), true);
 
-        guess.number = Some(game.range.min + 1);
+        guess.number = Some(game.range.max + 1);
         assert_eq!(guess.is_invalid_range(&game), true);
     }
 }
