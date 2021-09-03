@@ -24,7 +24,13 @@ pub struct Game {
 }
 
 impl Game {
-    /// Initiate new game
+    /// Initiates new game
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// let game = Game::new();
+    /// ```
     pub fn new() -> Self {
         // Get default range
         let range = Range::default();
