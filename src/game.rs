@@ -15,6 +15,19 @@ impl Default for Range {
     }
 }
 
+impl Range {
+    /// Set the range
+    #[allow(dead_code)]
+    pub fn set(&mut self, min: u32, max: u32) {
+        if min >= max {
+            panic!("max ({}) must be greate than min ({})", min, max);
+        }
+
+        self.min = min;
+        self.max = max;
+    }
+}
+
 /// Starting state of the game
 #[derive(Debug)]
 pub struct Game {
@@ -30,14 +43,11 @@ impl Game {
     /// ```
     /// let game = Game::new();
     /// ```
-    pub fn new() -> Self {
-        // Get default range
-        let range = Range::default();
-
+    pub fn new(range: Range) -> Self {
         // Get random guess number
         let mut rng = rand::thread_rng();
         let number = rng.gen_range(range.min..=range.max);
 
-        Game { range, number }
+        Game { range: range, number }
     }
 }

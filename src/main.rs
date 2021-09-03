@@ -2,7 +2,7 @@ mod game;
 mod guess;
 mod speech;
 
-use game::Game;
+use game::{Game, Range};
 use guess::Guess;
 use speech::Speech;
 use std::cmp::Ordering;
@@ -10,7 +10,8 @@ use std::cmp::Ordering;
 /// Let's play the game!
 fn main() {
     // Start new game
-    let game = Game::new();
+    let range = Range::default();
+    let game = Game::new(range);
     let mut guess = Guess::new();
 
     // Welcome to the game
