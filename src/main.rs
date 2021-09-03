@@ -1,6 +1,9 @@
-use rust_guessing_game::{Game, Guess, Speech};
+mod game;
+
+use game::{Game, Guess, Speech};
 use std::cmp::Ordering;
 
+/// Let's play the game!
 fn main() {
     // Start new game
     let game = Game::new();

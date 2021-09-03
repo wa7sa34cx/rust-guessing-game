@@ -1,3 +1,5 @@
+//! Main game module
+
 use rand::Rng;
 use std::io;
 
@@ -44,7 +46,7 @@ impl Speech {
         println!("  The Guessing Game 🤔");
         println!("------------------------\n");
         println!(
-            "Let's play a game. I thought of a number between {} and {}.",
+            "Let's play the game. I thought of a number between {} and {}.",
             game.range.min, game.range.max
         );
         println!("Try to guess it! Please type your number:\n");
@@ -80,14 +82,25 @@ pub struct Guess {
 }
 
 impl Guess {
-    /// Initiate new guess number
+    /// Initiates new guess number
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// let guess = Guess::new();
+    /// ```
     pub fn new() -> Self {
         Guess { number: None }
     }
-}
 
-impl Guess {
-    /// Get string from stdin and try converting to a number.
+    /// Reads a line of input, and try converting to a number.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// let mut guess = Guess::new();
+    /// guess.try_guess();
+    /// ```
     pub fn try_guess(&mut self) {
         // get string from stdin
         let mut s = String::new();
@@ -102,11 +115,15 @@ impl Guess {
     /// # Examples
     ///
     /// ```
-    ///  # use rust_guessing_game::Guess;
+    /// // for range between 1 and 100:
+    ///
     /// let guess = Guess { number: Some(42) };
     /// assert_eq!(guess.is_not_a_number(), false);
     ///
-    /// let guess = Guess { number: None };
+    /// let guess = Guess { number: Some(123) };
+    /// assert_eq!(guess.is_not_a_number(), true);
+    ///
+    /// let guess = Guess { number: Some(0) };
     /// assert_eq!(guess.is_not_a_number(), true);
     /// ```
     pub fn is_not_a_number(&self) -> bool {
@@ -117,6 +134,19 @@ impl Guess {
         }
     }
 
+    /// Returns `true` if the number is out of [`Range`]
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// let game = Game::new();
+    ///
+    /// let guess = Guess { number: Some(42) };
+    /// assert_eq!(guess.is_invalid_range(&game), false);
+    ///
+    /// let guess = Guess { number: game.range.max + 1 };
+    /// assert_eq!(guess.is_not_a_number(), true);
+    /// ```
     pub fn is_invalid_range(&self, game: &Game) -> bool {
         if self.number.unwrap() < game.range.min {
             true
@@ -150,7 +180,6 @@ mod tests {
 
         guess.number = Some(42);
         assert_eq!(guess.is_invalid_range(&game), false);
-        
 
         guess.number = Some(game.range.min - 1);
         assert_eq!(guess.is_invalid_range(&game), true);
