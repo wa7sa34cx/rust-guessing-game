@@ -4,7 +4,7 @@ Let's play the game. I thought of a number. Try to guess it!
 
 ## Usage
 
-Just clone the repository and run this command:
+Assuming you already have a working Rust setup, just clone the repository and run this command:
 
 ```bash
 cargo run
